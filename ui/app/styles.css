@@ -1,0 +1,218 @@
+/* Dynatrace Dark Theme Styles */
+
+/* CSS Variables - Dynatrace Dark Theme */
+:root {
+  --dt-colors-background-base-default: #1b1c2e;
+  --dt-colors-background-container-default: #25273d;
+  --dt-colors-background-input-default: #1b1c2e;
+  --dt-colors-text-neutral-default: #f0f0f5;
+  --dt-colors-text-neutral-subdued: #b4b4be;
+  --dt-colors-border-neutral-default: #3d3f5c;
+  --dt-colors-text-critical-default: #ee3d48;
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1b1c2e;
+  color: #f0f0f5;
+}
+
+#root {
+  background-color: #1b1c2e;
+  min-height: 100vh;
+}
+
+/* DQL Editor Dark Theme */
+.cm-editor {
+  background-color: #1b1c2e !important;
+}
+
+.cm-content {
+  background-color: #1b1c2e !important;
+  color: #f0f0f5 !important;
+  caret-color: #f0f0f5 !important;
+}
+
+.cm-scroller {
+  background-color: #1b1c2e !important;
+}
+
+.cm-gutters {
+  background-color: #181927 !important;
+  border-right: 1px solid #3d3f5c !important;
+  color: #b4b4be !important;
+}
+
+.cm-activeLineGutter {
+  background-color: #2a2c42 !important;
+}
+
+.cm-activeLine {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.cm-line {
+  color: #f0f0f5 !important;
+}
+
+.cm-cursor {
+  border-left-color: #f0f0f5 !important;
+}
+
+/* DQL Syntax Highlighting */
+.tok-keyword {
+  color: #c792ea !important;
+}
+
+.tok-string {
+  color: #c3e88d !important;
+}
+
+.tok-comment {
+  color: #7c7d8c !important;
+  font-style: italic;
+}
+
+.tok-number {
+  color: #f78c6c !important;
+}
+
+.tok-operator {
+  color: #89ddff !important;
+}
+
+.tok-variableName {
+  color: #82aaff !important;
+}
+
+/* Strato Input Group */
+.strato-inputgroup {
+  background-color: #1b1c2e !important;
+  border-color: #3d3f5c !important;
+}
+
+/* Force all text to be visible */
+h1, h2, h3, h4, h5, h6 {
+  color: #f0f0f5 !important;
+}
+
+p, span, div {
+  color: inherit;
+}
+
+/* DataTableV2 Dark Theme */
+table,
+table[data-testid],
+div[role="table"],
+.strato-table,
+[class*="table"],
+[class*="Table"] {
+  background-color: #25273d !important;
+  color: #f0f0f5 !important;
+}
+
+thead,
+div[role="rowgroup"]:first-child {
+  background-color: #1b1c2e !important;
+}
+
+th,
+div[role="columnheader"],
+[class*="header"],
+[class*="Header"] {
+  background-color: #1b1c2e !important;
+  color: #f0f0f5 !important;
+  border-bottom: 1px solid #3d3f5c !important;
+  font-weight: 600 !important;
+}
+
+td,
+div[role="cell"],
+div[role="gridcell"],
+[class*="cell"],
+[class*="Cell"] {
+  background-color: #25273d !important;
+  color: #f0f0f5 !important;
+  border-bottom: 1px solid #3d3f5c !important;
+}
+
+tr,
+div[role="row"] {
+  background-color: #25273d !important;
+}
+
+tr:hover,
+div[role="row"]:hover {
+  background-color: #2a2c42 !important;
+}
+
+tbody tr,
+div[role="rowgroup"]:not(:first-child) div[role="row"] {
+  background-color: #25273d !important;
+}
+
+tbody tr:hover,
+div[role="rowgroup"]:not(:first-child) div[role="row"]:hover {
+  background-color: #2a2c42 !important;
+}
+
+/* Table cell text - force visibility */
+tbody td,
+tbody th,
+div[role="cell"],
+div[role="gridcell"],
+div[role="cell"] *,
+div[role="gridcell"] * {
+  color: #f0f0f5 !important;
+}
+
+/* Pagination controls */
+nav,
+nav * {
+  background-color: transparent !important;
+  color: #f0f0f5 !important;
+}
+
+button {
+  color: #f0f0f5 !important;
+  background-color: #25273d !important;
+}
+
+button:hover {
+  background-color: #2a2c42 !important;
+}
+
+/* Select dropdowns in pagination */
+select,
+select option {
+  background-color: #25273d !important;
+  color: #f0f0f5 !important;
+  border: 1px solid #3d3f5c !important;
+}
+
+/* Strato component overrides */
+[class*="strato"] {
+  background-color: #25273d !important;
+  color: #f0f0f5 !important;
+}
+
+/* Grid and flex containers that might be used by DataTableV2 */
+div[class*="grid"],
+div[class*="Grid"],
+div[class*="flex"],
+div[class*="Flex"] {
+  background-color: transparent !important;
+}
+
+/* Any divs that act as table cells */
+div[class*="column"],
+div[class*="Column"] {
+  color: #f0f0f5 !important;
+}
