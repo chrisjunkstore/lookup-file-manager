@@ -1,0 +1,92 @@
+[
+  {
+    "product_id": "PROD-001",
+    "name": "Enterprise Monitoring Suite",
+    "category": "Software",
+    "price": 9999.99,
+    "currency": "USD",
+    "vendor": "TechCorp",
+    "status": "active"
+  },
+  {
+    "product_id": "PROD-002",
+    "name": "Cloud Analytics Platform",
+    "category": "Software",
+    "price": 14999.99,
+    "currency": "USD",
+    "vendor": "DataSystems Inc",
+    "status": "active"
+  },
+  {
+    "product_id": "PROD-003",
+    "name": "Security Gateway Appliance",
+    "category": "Hardware",
+    "price": 4599.99,
+    "currency": "USD",
+    "vendor": "SecureNet",
+    "status": "active"
+  },
+  {
+    "product_id": "PROD-004",
+    "name": "Load Balancer Pro",
+    "category": "Hardware",
+    "price": 7899.99,
+    "currency": "USD",
+    "vendor": "NetworkGear",
+    "status": "active"
+  },
+  {
+    "product_id": "PROD-005",
+    "name": "Database Performance Optimizer",
+    "category": "Software",
+    "price": 5499.99,
+    "currency": "USD",
+    "vendor": "DBTech Solutions",
+    "status": "active"
+  },
+  {
+    "product_id": "PROD-006",
+    "name": "API Management Gateway",
+    "category": "Software",
+    "price": 8999.99,
+    "currency": "USD",
+    "vendor": "APICore",
+    "status": "active"
+  },
+  {
+    "product_id": "PROD-007",
+    "name": "Container Orchestration Platform",
+    "category": "Software",
+    "price": 12499.99,
+    "currency": "USD",
+    "vendor": "CloudNative Tech",
+    "status": "active"
+  },
+  {
+    "product_id": "PROD-008",
+    "name": "Network Switch 48-Port",
+    "category": "Hardware",
+    "price": 2299.99,
+    "currency": "USD",
+    "vendor": "NetworkGear",
+    "status": "active"
+  },
+  {
+    "product_id": "PROD-009",
+    "name": "Backup & Recovery Suite",
+    "category": "Software",
+    "price": 6799.99,
+    "currency": "USD",
+    "vendor": "DataProtect Inc",
+    "status": "discontinued"
+  },
+  {
+    "product_id": "PROD-010",
+    "name": "Application Performance Monitor",
+    "category": "Software",
+    "price": 11999.99,
+    "currency": "USD",
+    "vendor": "PerformanceFirst",
+    "status": "active"
+  }
+]

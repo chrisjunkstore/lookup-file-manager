@@ -1,7 +1,7 @@
 {
-  "name": "dynatrace-gen3-app-template",
+  "name": "lookup-file-manager",
   "version": "1.0.0",
-  "description": "A template starter project for building Dynatrace Gen3 applications",
+  "description": "Interface for configuration lookup files in Grail",
   "private": true,
   "type": "module",
   "scripts": {

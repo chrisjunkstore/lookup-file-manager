@@ -1,6 +1,6 @@
-# Dynatrace Gen3 App Template
+# Lookup File Manager
 
-A starter template for building Dynatrace Gen3 applications by D1 Enterprise Solutions & Architecture.
+Interface for configuration lookup files in Grail
 
 ## Overview
 
@@ -19,8 +19,8 @@ This template provides a clean starting point for building custom Dynatrace appl
 
 ```bash
 # Copy this entire directory to start a new project
-cp -r DYNATRACE1-ESA-APP-TEMPLATE YOUR-NEW-APP-NAME
-cd YOUR-NEW-APP-NAME
+cp -r LOOKUP-FILE-MANAGER YOUR-NEW-APP-NAME
+cd lookup-file-manager
 ```
 
 ### 2. Update Configuration
@@ -30,10 +30,10 @@ Edit `app.config.json` to customize your app:
 ```json
 {
   "app": {
-    "id": "my.company.app.yourappname",
-    "name": "Your App Name",
+    "id": "dt.lookupfilemanager",
+    "name": "Lookup File Manager",
     "version": "1.0.0",
-    "description": "Your app description"
+    "description": "Interface for configuration lookup files in Grail"
   }
 }
 ```
@@ -42,8 +42,8 @@ Edit `package.json` to update the project name:
 
 ```json
 {
-  "name": "your-app-name",
-  "description": "Your app description"
+  "name": "lookup-file-manager",
+  "description": "Interface for configuration lookup files in Grail"
 }
 ```
 

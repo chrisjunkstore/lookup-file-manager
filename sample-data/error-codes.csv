@@ -1,0 +1,16 @@
+error_code,severity,category,description,resolution,documentation_url
+ERR-1001,critical,Authentication,Invalid credentials provided,Check username and password,https://docs.example.com/auth-errors
+ERR-1002,high,Authentication,Session expired,Re-authenticate to obtain new session,https://docs.example.com/auth-errors
+ERR-1003,medium,Authentication,Insufficient permissions,Contact administrator for access,https://docs.example.com/permissions
+ERR-2001,critical,Database,Connection timeout,Check database connectivity and network,https://docs.example.com/db-errors
+ERR-2002,high,Database,Query execution failed,Review query syntax and parameters,https://docs.example.com/db-errors
+ERR-2003,medium,Database,Deadlock detected,Retry transaction,https://docs.example.com/db-errors
+ERR-3001,high,Network,Service unavailable,Check service status and retry,https://docs.example.com/network-errors
+ERR-3002,medium,Network,Request timeout,Increase timeout or check network latency,https://docs.example.com/network-errors
+ERR-3003,low,Network,Rate limit exceeded,Wait before retrying request,https://docs.example.com/rate-limits
+ERR-4001,critical,Application,Null pointer exception,Check for null values in code,https://docs.example.com/app-errors
+ERR-4002,high,Application,Out of memory,Increase heap size or optimize memory usage,https://docs.example.com/memory-errors
+ERR-4003,medium,Application,Invalid configuration,Verify configuration file syntax,https://docs.example.com/config-errors
+ERR-5001,high,API,Invalid API key,Verify API key is correct and active,https://docs.example.com/api-errors
+ERR-5002,medium,API,Malformed request,Check request body format,https://docs.example.com/api-errors
+ERR-5003,low,API,Deprecated endpoint,Use new endpoint version,https://docs.example.com/api-deprecation

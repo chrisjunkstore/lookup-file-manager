@@ -1,0 +1,15 @@
+{"ip_address":"192.168.1.100","city":"New York","state":"NY","country":"USA","latitude":40.7128,"longitude":-74.0060,"isp":"CityNet ISP"}
+{"ip_address":"10.50.25.45","city":"San Francisco","state":"CA","country":"USA","latitude":37.7749,"longitude":-122.4194,"isp":"Bay Area Networks"}
+{"ip_address":"172.16.30.200","city":"London","state":"England","country":"UK","latitude":51.5074,"longitude":-0.1278,"isp":"British Telecom"}
+{"ip_address":"192.168.10.50","city":"Tokyo","state":"Tokyo","country":"Japan","latitude":35.6762,"longitude":139.6503,"isp":"Tokyo Internet Co"}
+{"ip_address":"10.100.50.150","city":"Berlin","state":"Berlin","country":"Germany","latitude":52.5200,"longitude":13.4050,"isp":"Deutsche Network"}
+{"ip_address":"172.20.15.75","city":"Sydney","state":"NSW","country":"Australia","latitude":-33.8688,"longitude":151.2093,"isp":"Aussie Broadband"}
+{"ip_address":"192.168.5.30","city":"Toronto","state":"ON","country":"Canada","latitude":43.6532,"longitude":-79.3832,"isp":"Canadian Networks"}
+{"ip_address":"10.75.40.120","city":"Singapore","state":"Singapore","country":"Singapore","latitude":1.3521,"longitude":103.8198,"isp":"SingNet"}
+{"ip_address":"172.25.60.90","city":"Paris","state":"Ile-de-France","country":"France","latitude":48.8566,"longitude":2.3522,"isp":"France Telecom"}
+{"ip_address":"192.168.20.180","city":"Mumbai","state":"Maharashtra","country":"India","latitude":19.0760,"longitude":72.8777,"isp":"Reliance Jio"}
+{"ip_address":"10.150.80.210","city":"São Paulo","state":"SP","country":"Brazil","latitude":-23.5505,"longitude":-46.6333,"isp":"Brasil Telecom"}
+{"ip_address":"172.30.45.140","city":"Dubai","state":"Dubai","country":"UAE","latitude":25.2048,"longitude":55.2708,"isp":"Emirates Network"}
+{"ip_address":"192.168.15.95","city":"Seoul","state":"Seoul","country":"South Korea","latitude":37.5665,"longitude":126.9780,"isp":"Korea Telecom"}
+{"ip_address":"10.200.100.160","city":"Mexico City","state":"CDMX","country":"Mexico","latitude":19.4326,"longitude":-99.1332,"isp":"Telmex"}
+{"ip_address":"172.35.70.105","city":"Amsterdam","state":"North Holland","country":"Netherlands","latitude":52.3676,"longitude":4.9041,"isp":"KPN"}

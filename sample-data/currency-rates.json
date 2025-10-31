@@ -1,0 +1,72 @@
+[
+  {
+    "currency_code": "USD",
+    "currency_name": "US Dollar",
+    "symbol": "$",
+    "exchange_rate": 1.0000,
+    "last_updated": "2025-01-15T00:00:00Z"
+  },
+  {
+    "currency_code": "EUR",
+    "currency_name": "Euro",
+    "symbol": "€",
+    "exchange_rate": 0.9234,
+    "last_updated": "2025-01-15T00:00:00Z"
+  },
+  {
+    "currency_code": "GBP",
+    "currency_name": "British Pound",
+    "symbol": "£",
+    "exchange_rate": 0.7912,
+    "last_updated": "2025-01-15T00:00:00Z"
+  },
+  {
+    "currency_code": "JPY",
+    "currency_name": "Japanese Yen",
+    "symbol": "¥",
+    "exchange_rate": 149.8500,
+    "last_updated": "2025-01-15T00:00:00Z"
+  },
+  {
+    "currency_code": "CAD",
+    "currency_name": "Canadian Dollar",
+    "symbol": "C$",
+    "exchange_rate": 1.3567,
+    "last_updated": "2025-01-15T00:00:00Z"
+  },
+  {
+    "currency_code": "AUD",
+    "currency_name": "Australian Dollar",
+    "symbol": "A$",
+    "exchange_rate": 1.5234,
+    "last_updated": "2025-01-15T00:00:00Z"
+  },
+  {
+    "currency_code": "CHF",
+    "currency_name": "Swiss Franc",
+    "symbol": "Fr",
+    "exchange_rate": 0.8891,
+    "last_updated": "2025-01-15T00:00:00Z"
+  },
+  {
+    "currency_code": "CNY",
+    "currency_name": "Chinese Yuan",
+    "symbol": "¥",
+    "exchange_rate": 7.2345,
+    "last_updated": "2025-01-15T00:00:00Z"
+  },
+  {
+    "currency_code": "INR",
+    "currency_name": "Indian Rupee",
+    "symbol": "₹",
+    "exchange_rate": 83.2500,
+    "last_updated": "2025-01-15T00:00:00Z"
+  },
+  {
+    "currency_code": "BRL",
+    "currency_name": "Brazilian Real",
+    "symbol": "R$",
+    "exchange_rate": 5.1234,
+    "last_updated": "2025-01-15T00:00:00Z"
+  }
+]

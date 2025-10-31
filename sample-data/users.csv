@@ -1,0 +1,16 @@
+user_id,username,email,department,role,location,status
+U001,jsmith,john.smith@company.com,Engineering,Senior Engineer,New York,active
+U002,mjones,mary.jones@company.com,Sales,Account Executive,San Francisco,active
+U003,bwilson,bob.wilson@company.com,Engineering,DevOps Lead,Austin,active
+U004,sdavis,susan.davis@company.com,Marketing,Marketing Manager,Chicago,active
+U005,rlee,robert.lee@company.com,Engineering,Software Engineer,Seattle,active
+U006,agarcia,ana.garcia@company.com,HR,HR Specialist,Miami,active
+U007,tmartinez,tom.martinez@company.com,Sales,Sales Director,Boston,active
+U008,kbrown,karen.brown@company.com,Engineering,QA Engineer,Portland,active
+U009,janderson,james.anderson@company.com,Finance,Financial Analyst,Denver,active
+U010,ltaylor,lisa.taylor@company.com,Engineering,Principal Engineer,San Francisco,active
+U011,dthomas,david.thomas@company.com,Marketing,Content Writer,Remote,active
+U012,mmoore,michelle.moore@company.com,Engineering,Backend Engineer,New York,active
+U013,cmartin,chris.martin@company.com,Sales,Account Manager,Los Angeles,inactive
+U014,jjackson,jennifer.jackson@company.com,Engineering,Frontend Engineer,Austin,active
+U015,pwhite,paul.white@company.com,Operations,Operations Manager,Chicago,active

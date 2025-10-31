@@ -1,0 +1,201 @@
+transaction_id,customer_id,product_id,amount,currency,status,payment_method,timestamp,location,category
+TXN-00001,CUST-2841,PROD-5623,156.99,USD,completed,credit_card,2025-01-15T08:23:14Z,New York,electronics
+TXN-00002,CUST-7392,PROD-1847,89.50,USD,completed,paypal,2025-01-15T08:45:22Z,Los Angeles,clothing
+TXN-00003,CUST-5621,PROD-9234,234.75,EUR,pending,debit_card,2025-01-15T09:12:33Z,London,home_goods
+TXN-00004,CUST-8473,PROD-4512,45.00,GBP,completed,credit_card,2025-01-15T09:34:56Z,Manchester,books
+TXN-00005,CUST-1294,PROD-7821,567.89,USD,failed,bank_transfer,2025-01-15T10:01:12Z,Chicago,electronics
+TXN-00006,CUST-9384,PROD-3456,123.45,CAD,completed,credit_card,2025-01-15T10:23:45Z,Toronto,sports
+TXN-00007,CUST-4567,PROD-8901,678.90,USD,completed,paypal,2025-01-15T10:45:23Z,San Francisco,electronics
+TXN-00008,CUST-2938,PROD-2341,34.99,USD,completed,credit_card,2025-01-15T11:12:34Z,Boston,books
+TXN-00009,CUST-7456,PROD-5678,890.12,EUR,pending,debit_card,2025-01-15T11:34:56Z,Paris,clothing
+TXN-00010,CUST-3821,PROD-9012,456.78,USD,completed,credit_card,2025-01-15T12:01:23Z,Seattle,home_goods
+TXN-00011,CUST-6745,PROD-3456,234.56,GBP,completed,paypal,2025-01-15T12:23:45Z,Edinburgh,electronics
+TXN-00012,CUST-8392,PROD-7890,123.00,USD,completed,credit_card,2025-01-15T12:45:12Z,Miami,sports
+TXN-00013,CUST-1928,PROD-2345,567.89,CAD,failed,bank_transfer,2025-01-15T13:12:34Z,Vancouver,clothing
+TXN-00014,CUST-5647,PROD-6789,345.67,USD,completed,debit_card,2025-01-15T13:34:56Z,Austin,books
+TXN-00015,CUST-9283,PROD-1234,789.01,EUR,completed,credit_card,2025-01-15T14:01:23Z,Berlin,electronics
+TXN-00016,CUST-4738,PROD-5678,456.78,USD,pending,paypal,2025-01-15T14:23:45Z,Denver,home_goods
+TXN-00017,CUST-7192,PROD-9012,234.56,GBP,completed,credit_card,2025-01-15T14:45:12Z,Birmingham,sports
+TXN-00018,CUST-3564,PROD-3456,123.45,USD,completed,debit_card,2025-01-15T15:12:34Z,Portland,clothing
+TXN-00019,CUST-8291,PROD-7890,678.90,CAD,completed,credit_card,2025-01-15T15:34:56Z,Montreal,electronics
+TXN-00020,CUST-6453,PROD-2345,345.67,USD,failed,bank_transfer,2025-01-15T16:01:23Z,Phoenix,books
+TXN-00021,CUST-2847,PROD-6789,567.89,EUR,completed,paypal,2025-01-15T16:23:45Z,Amsterdam,home_goods
+TXN-00022,CUST-9173,PROD-1234,234.56,USD,completed,credit_card,2025-01-15T16:45:12Z,Atlanta,sports
+TXN-00023,CUST-5628,PROD-5678,456.78,GBP,pending,debit_card,2025-01-15T17:12:34Z,Glasgow,clothing
+TXN-00024,CUST-7394,PROD-9012,789.01,USD,completed,credit_card,2025-01-15T17:34:56Z,Dallas,electronics
+TXN-00025,CUST-4821,PROD-3456,123.45,CAD,completed,paypal,2025-01-15T18:01:23Z,Calgary,books
+TXN-00026,CUST-8563,PROD-7890,345.67,USD,completed,credit_card,2025-01-15T18:23:45Z,Houston,home_goods
+TXN-00027,CUST-1947,PROD-2345,678.90,EUR,failed,bank_transfer,2025-01-15T18:45:12Z,Madrid,sports
+TXN-00028,CUST-6284,PROD-6789,234.56,USD,completed,debit_card,2025-01-15T19:12:34Z,Philadelphia,clothing
+TXN-00029,CUST-9572,PROD-1234,567.89,GBP,completed,credit_card,2025-01-15T19:34:56Z,Leeds,electronics
+TXN-00030,CUST-3418,PROD-5678,456.78,USD,pending,paypal,2025-01-15T20:01:23Z,San Diego,home_goods
+TXN-00031,CUST-7263,PROD-9012,123.45,CAD,completed,credit_card,2025-01-15T20:23:45Z,Ottawa,sports
+TXN-00032,CUST-5849,PROD-3456,789.01,USD,completed,debit_card,2025-01-15T20:45:12Z,Detroit,clothing
+TXN-00033,CUST-8374,PROD-7890,345.67,EUR,completed,credit_card,2025-01-15T21:12:34Z,Rome,books
+TXN-00034,CUST-2691,PROD-2345,234.56,USD,failed,bank_transfer,2025-01-15T21:34:56Z,Minneapolis,electronics
+TXN-00035,CUST-9185,PROD-6789,678.90,GBP,completed,paypal,2025-01-15T22:01:23Z,Liverpool,home_goods
+TXN-00036,CUST-4726,PROD-1234,456.78,USD,completed,credit_card,2025-01-15T22:23:45Z,Tampa,sports
+TXN-00037,CUST-6538,PROD-5678,567.89,CAD,pending,debit_card,2025-01-15T22:45:12Z,Winnipeg,clothing
+TXN-00038,CUST-8192,PROD-9012,234.56,USD,completed,credit_card,2025-01-15T23:12:34Z,Baltimore,electronics
+TXN-00039,CUST-3467,PROD-3456,123.45,EUR,completed,paypal,2025-01-15T23:34:56Z,Brussels,books
+TXN-00040,CUST-7294,PROD-7890,789.01,USD,completed,credit_card,2025-01-15T23:56:12Z,St Louis,home_goods
+TXN-00041,CUST-5823,PROD-2345,345.67,GBP,failed,bank_transfer,2025-01-16T00:12:34Z,Bristol,sports
+TXN-00042,CUST-9184,PROD-6789,456.78,USD,completed,debit_card,2025-01-16T00:34:56Z,Cleveland,clothing
+TXN-00043,CUST-4675,PROD-1234,678.90,CAD,completed,credit_card,2025-01-16T01:01:23Z,Quebec City,electronics
+TXN-00044,CUST-8329,PROD-5678,234.56,USD,pending,paypal,2025-01-16T01:23:45Z,Pittsburgh,books
+TXN-00045,CUST-2746,PROD-9012,567.89,EUR,completed,credit_card,2025-01-16T01:45:12Z,Vienna,home_goods
+TXN-00046,CUST-6592,PROD-3456,123.45,USD,completed,debit_card,2025-01-16T02:12:34Z,Cincinnati,sports
+TXN-00047,CUST-9283,PROD-7890,456.78,GBP,completed,credit_card,2025-01-16T02:34:56Z,Newcastle,clothing
+TXN-00048,CUST-3847,PROD-2345,789.01,USD,failed,bank_transfer,2025-01-16T03:01:23Z,Kansas City,electronics
+TXN-00049,CUST-7164,PROD-6789,345.67,CAD,completed,paypal,2025-01-16T03:23:45Z,Halifax,books
+TXN-00050,CUST-5928,PROD-1234,234.56,USD,completed,credit_card,2025-01-16T03:45:12Z,Indianapolis,home_goods
+TXN-00051,CUST-8473,PROD-5678,678.90,EUR,pending,debit_card,2025-01-16T04:12:34Z,Munich,sports
+TXN-00052,CUST-2691,PROD-9012,456.78,USD,completed,credit_card,2025-01-16T04:34:56Z,Columbus,clothing
+TXN-00053,CUST-6374,PROD-3456,567.89,GBP,completed,paypal,2025-01-16T05:01:23Z,Cardiff,electronics
+TXN-00054,CUST-9182,PROD-7890,123.45,USD,completed,debit_card,2025-01-16T05:23:45Z,Charlotte,books
+TXN-00055,CUST-4826,PROD-2345,234.56,CAD,failed,bank_transfer,2025-01-16T05:45:12Z,Regina,home_goods
+TXN-00056,CUST-7593,PROD-6789,789.01,USD,completed,credit_card,2025-01-16T06:12:34Z,San Antonio,sports
+TXN-00057,CUST-3418,PROD-1234,345.67,EUR,pending,paypal,2025-01-16T06:34:56Z,Zurich,clothing
+TXN-00058,CUST-8264,PROD-5678,456.78,USD,completed,credit_card,2025-01-16T07:01:23Z,Nashville,electronics
+TXN-00059,CUST-5947,PROD-9012,678.90,GBP,completed,debit_card,2025-01-16T07:23:45Z,Sheffield,books
+TXN-00060,CUST-2738,PROD-3456,234.56,USD,completed,credit_card,2025-01-16T07:45:12Z,Milwaukee,home_goods
+TXN-00061,CUST-9183,PROD-7890,567.89,CAD,failed,bank_transfer,2025-01-16T08:12:34Z,Saskatoon,sports
+TXN-00062,CUST-6429,PROD-2345,123.45,USD,completed,paypal,2025-01-16T08:34:56Z,Memphis,clothing
+TXN-00063,CUST-8172,PROD-6789,456.78,EUR,completed,credit_card,2025-01-16T09:01:23Z,Copenhagen,electronics
+TXN-00064,CUST-4836,PROD-1234,789.01,USD,pending,debit_card,2025-01-16T09:23:45Z,Louisville,books
+TXN-00065,CUST-7294,PROD-5678,345.67,GBP,completed,credit_card,2025-01-16T09:45:12Z,Southampton,home_goods
+TXN-00066,CUST-5628,PROD-9012,234.56,USD,completed,paypal,2025-01-16T10:12:34Z,Oklahoma City,sports
+TXN-00067,CUST-9374,PROD-3456,678.90,CAD,completed,credit_card,2025-01-16T10:34:56Z,Victoria,clothing
+TXN-00068,CUST-3847,PROD-7890,456.78,USD,failed,bank_transfer,2025-01-16T11:01:23Z,Las Vegas,electronics
+TXN-00069,CUST-6192,PROD-2345,567.89,EUR,completed,debit_card,2025-01-16T11:23:45Z,Stockholm,books
+TXN-00070,CUST-8473,PROD-6789,123.45,USD,completed,credit_card,2025-01-16T11:45:12Z,Raleigh,home_goods
+TXN-00071,CUST-2764,PROD-1234,234.56,GBP,pending,paypal,2025-01-16T12:12:34Z,Plymouth,sports
+TXN-00072,CUST-7183,PROD-5678,789.01,USD,completed,credit_card,2025-01-16T12:34:56Z,Omaha,clothing
+TXN-00073,CUST-5928,PROD-9012,345.67,CAD,completed,debit_card,2025-01-16T13:01:23Z,London ON,electronics
+TXN-00074,CUST-9482,PROD-3456,456.78,USD,completed,credit_card,2025-01-16T13:23:45Z,Tucson,books
+TXN-00075,CUST-4736,PROD-7890,678.90,EUR,failed,bank_transfer,2025-01-16T13:45:12Z,Oslo,home_goods
+TXN-00076,CUST-8264,PROD-2345,234.56,USD,completed,paypal,2025-01-16T14:12:34Z,Fresno,sports
+TXN-00077,CUST-6391,PROD-6789,567.89,GBP,completed,credit_card,2025-01-16T14:34:56Z,Nottingham,clothing
+TXN-00078,CUST-2847,PROD-1234,123.45,USD,pending,debit_card,2025-01-16T15:01:23Z,Sacramento,electronics
+TXN-00079,CUST-7594,PROD-5678,456.78,CAD,completed,credit_card,2025-01-16T15:23:45Z,Hamilton,books
+TXN-00080,CUST-9183,PROD-9012,789.01,USD,completed,paypal,2025-01-16T15:45:12Z,Mesa,home_goods
+TXN-00081,CUST-4826,PROD-3456,345.67,EUR,completed,credit_card,2025-01-16T16:12:34Z,Helsinki,sports
+TXN-00082,CUST-6472,PROD-7890,234.56,USD,failed,bank_transfer,2025-01-16T16:34:56Z,Atlanta,clothing
+TXN-00083,CUST-8391,PROD-2345,678.90,GBP,completed,debit_card,2025-01-16T17:01:23Z,Leicester,electronics
+TXN-00084,CUST-3728,PROD-6789,456.78,USD,completed,credit_card,2025-01-16T17:23:45Z,Colorado Springs,books
+TXN-00085,CUST-7164,PROD-1234,567.89,CAD,pending,paypal,2025-01-16T17:45:12Z,Kitchener,home_goods
+TXN-00086,CUST-5947,PROD-5678,123.45,USD,completed,credit_card,2025-01-16T18:12:34Z,Virginia Beach,sports
+TXN-00087,CUST-9283,PROD-9012,234.56,EUR,completed,debit_card,2025-01-16T18:34:56Z,Dublin,clothing
+TXN-00088,CUST-4638,PROD-3456,789.01,USD,completed,credit_card,2025-01-16T19:01:23Z,Wichita,electronics
+TXN-00089,CUST-8174,PROD-7890,345.67,GBP,failed,bank_transfer,2025-01-16T19:23:45Z,Portsmouth,books
+TXN-00090,CUST-2693,PROD-2345,456.78,USD,completed,paypal,2025-01-16T19:45:12Z,Arlington,home_goods
+TXN-00091,CUST-6482,PROD-6789,678.90,CAD,completed,credit_card,2025-01-16T20:12:34Z,Windsor,sports
+TXN-00092,CUST-7395,PROD-1234,234.56,USD,pending,debit_card,2025-01-16T20:34:56Z,New Orleans,clothing
+TXN-00093,CUST-9174,PROD-5678,567.89,EUR,completed,credit_card,2025-01-16T21:01:23Z,Lisbon,electronics
+TXN-00094,CUST-5826,PROD-9012,123.45,USD,completed,paypal,2025-01-16T21:23:45Z,Bakersfield,books
+TXN-00095,CUST-4739,PROD-3456,456.78,GBP,completed,credit_card,2025-01-16T21:45:12Z,York,home_goods
+TXN-00096,CUST-8263,PROD-7890,789.01,USD,failed,bank_transfer,2025-01-16T22:12:34Z,Tampa,sports
+TXN-00097,CUST-3648,PROD-2345,345.67,CAD,completed,debit_card,2025-01-16T22:34:56Z,Barrie,clothing
+TXN-00098,CUST-7192,PROD-6789,234.56,USD,completed,credit_card,2025-01-16T23:01:23Z,Aurora,electronics
+TXN-00099,CUST-6483,PROD-1234,678.90,EUR,pending,paypal,2025-01-16T23:23:45Z,Prague,books
+TXN-00100,CUST-9285,PROD-5678,456.78,USD,completed,credit_card,2025-01-16T23:45:12Z,Anaheim,home_goods
+TXN-00101,CUST-4827,PROD-9012,567.89,GBP,completed,debit_card,2025-01-17T00:12:34Z,Derby,sports
+TXN-00102,CUST-8174,PROD-3456,123.45,USD,completed,credit_card,2025-01-17T00:34:56Z,Santa Ana,clothing
+TXN-00103,CUST-2749,PROD-7890,234.56,CAD,failed,bank_transfer,2025-01-17T01:01:23Z,Kelowna,electronics
+TXN-00104,CUST-6394,PROD-2345,789.01,USD,completed,paypal,2025-01-17T01:23:45Z,St Petersburg,books
+TXN-00105,CUST-7286,PROD-6789,345.67,EUR,completed,credit_card,2025-01-17T01:45:12Z,Warsaw,home_goods
+TXN-00106,CUST-9183,PROD-1234,456.78,USD,pending,debit_card,2025-01-17T02:12:34Z,Riverside,sports
+TXN-00107,CUST-5638,PROD-5678,678.90,GBP,completed,credit_card,2025-01-17T02:34:56Z,Stoke,clothing
+TXN-00108,CUST-4729,PROD-9012,234.56,USD,completed,paypal,2025-01-17T03:01:23Z,Corpus Christi,electronics
+TXN-00109,CUST-8364,PROD-3456,567.89,CAD,completed,credit_card,2025-01-17T03:23:45Z,Oshawa,books
+TXN-00110,CUST-3847,PROD-7890,123.45,USD,failed,bank_transfer,2025-01-17T03:45:12Z,Lexington,home_goods
+TXN-00111,CUST-7195,PROD-2345,456.78,EUR,completed,debit_card,2025-01-17T04:12:34Z,Budapest,sports
+TXN-00112,CUST-6482,PROD-6789,789.01,USD,completed,credit_card,2025-01-17T04:34:56Z,Stockton,clothing
+TXN-00113,CUST-9274,PROD-1234,345.67,GBP,pending,paypal,2025-01-17T05:01:23Z,Coventry,electronics
+TXN-00114,CUST-5827,PROD-5678,234.56,USD,completed,credit_card,2025-01-17T05:23:45Z,Henderson,books
+TXN-00115,CUST-4736,PROD-9012,678.90,CAD,completed,debit_card,2025-01-17T05:45:12Z,St Johns,home_goods
+TXN-00116,CUST-8193,PROD-3456,456.78,USD,completed,credit_card,2025-01-17T06:12:34Z,St Paul,sports
+TXN-00117,CUST-2648,PROD-7890,567.89,EUR,failed,bank_transfer,2025-01-17T06:34:56Z,Athens,clothing
+TXN-00118,CUST-7384,PROD-2345,123.45,USD,completed,paypal,2025-01-17T07:01:23Z,Toledo,electronics
+TXN-00119,CUST-6295,PROD-6789,234.56,GBP,completed,credit_card,2025-01-17T07:23:45Z,Wolverhampton,books
+TXN-00120,CUST-9183,PROD-1234,789.01,USD,pending,debit_card,2025-01-17T07:45:12Z,Lincoln,home_goods
+TXN-00121,CUST-4827,PROD-5678,345.67,CAD,completed,credit_card,2025-01-17T08:12:34Z,Abbotsford,sports
+TXN-00122,CUST-8374,PROD-9012,456.78,USD,completed,paypal,2025-01-17T08:34:56Z,Newark,clothing
+TXN-00123,CUST-5649,PROD-3456,678.90,EUR,completed,credit_card,2025-01-17T09:01:23Z,Bucharest,electronics
+TXN-00124,CUST-7294,PROD-7890,234.56,USD,failed,bank_transfer,2025-01-17T09:23:45Z,Plano,books
+TXN-00125,CUST-3728,PROD-2345,567.89,GBP,completed,debit_card,2025-01-17T09:45:12Z,Reading,home_goods
+TXN-00126,CUST-9186,PROD-6789,123.45,USD,completed,credit_card,2025-01-17T10:12:34Z,Fort Wayne,sports
+TXN-00127,CUST-6483,PROD-1234,456.78,CAD,pending,paypal,2025-01-17T10:34:56Z,Trois-Rivieres,clothing
+TXN-00128,CUST-8274,PROD-5678,789.01,USD,completed,credit_card,2025-01-17T11:01:23Z,Chandler,electronics
+TXN-00129,CUST-4637,PROD-9012,345.67,EUR,completed,debit_card,2025-01-17T11:23:45Z,Sofia,books
+TXN-00130,CUST-7395,PROD-3456,234.56,USD,completed,credit_card,2025-01-17T11:45:12Z,Chula Vista,home_goods
+TXN-00131,CUST-2849,PROD-7890,678.90,GBP,failed,bank_transfer,2025-01-17T12:12:34Z,Sunderland,sports
+TXN-00132,CUST-6194,PROD-2345,456.78,USD,completed,paypal,2025-01-17T12:34:56Z,Laredo,clothing
+TXN-00133,CUST-9385,PROD-6789,567.89,CAD,completed,credit_card,2025-01-17T13:01:23Z,Gatineau,electronics
+TXN-00134,CUST-5728,PROD-1234,123.45,USD,pending,debit_card,2025-01-17T13:23:45Z,Durham,books
+TXN-00135,CUST-8463,PROD-5678,234.56,EUR,completed,credit_card,2025-01-17T13:45:12Z,Vilnius,home_goods
+TXN-00136,CUST-4739,PROD-9012,789.01,USD,completed,paypal,2025-01-17T14:12:34Z,Lubbock,sports
+TXN-00137,CUST-7286,PROD-3456,345.67,GBP,completed,credit_card,2025-01-17T14:34:56Z,Preston,clothing
+TXN-00138,CUST-3648,PROD-7890,456.78,USD,failed,bank_transfer,2025-01-17T15:01:23Z,Scottsdale,electronics
+TXN-00139,CUST-9174,PROD-2345,678.90,CAD,completed,debit_card,2025-01-17T15:23:45Z,Sherbrooke,books
+TXN-00140,CUST-6483,PROD-6789,234.56,USD,completed,credit_card,2025-01-17T15:45:12Z,Reno,home_goods
+TXN-00141,CUST-8295,PROD-1234,567.89,EUR,pending,paypal,2025-01-17T16:12:34Z,Tallinn,sports
+TXN-00142,CUST-5827,PROD-5678,123.45,USD,completed,credit_card,2025-01-17T16:34:56Z,Hialeah,clothing
+TXN-00143,CUST-4736,PROD-9012,456.78,GBP,completed,debit_card,2025-01-17T17:01:23Z,Gloucester,electronics
+TXN-00144,CUST-7193,PROD-3456,789.01,USD,completed,credit_card,2025-01-17T17:23:45Z,Chesapeake,books
+TXN-00145,CUST-2648,PROD-7890,345.67,CAD,failed,bank_transfer,2025-01-17T17:45:12Z,Saguenay,home_goods
+TXN-00146,CUST-9286,PROD-2345,234.56,USD,completed,paypal,2025-01-17T18:12:34Z,Irving,sports
+TXN-00147,CUST-6384,PROD-6789,678.90,EUR,completed,credit_card,2025-01-17T18:34:56Z,Riga,clothing
+TXN-00148,CUST-8473,PROD-1234,456.78,USD,pending,debit_card,2025-01-17T19:01:23Z,Garland,electronics
+TXN-00149,CUST-5738,PROD-5678,567.89,GBP,completed,credit_card,2025-01-17T19:23:45Z,Cambridge,books
+TXN-00150,CUST-4629,PROD-9012,123.45,USD,completed,paypal,2025-01-17T19:45:12Z,North Las Vegas,home_goods
+TXN-00151,CUST-7395,PROD-3456,234.56,CAD,completed,credit_card,2025-01-17T20:12:34Z,Levis,sports
+TXN-00152,CUST-9184,PROD-7890,789.01,USD,failed,bank_transfer,2025-01-17T20:34:56Z,Fremont,clothing
+TXN-00153,CUST-3847,PROD-2345,345.67,EUR,completed,debit_card,2025-01-17T21:01:23Z,Luxembourg,electronics
+TXN-00154,CUST-6294,PROD-6789,456.78,USD,completed,credit_card,2025-01-17T21:23:45Z,Baton Rouge,books
+TXN-00155,CUST-8173,PROD-1234,678.90,GBP,pending,paypal,2025-01-17T21:45:12Z,Oxford,home_goods
+TXN-00156,CUST-5628,PROD-5678,234.56,USD,completed,credit_card,2025-01-17T22:12:34Z,Richmond,sports
+TXN-00157,CUST-4736,PROD-9012,567.89,CAD,completed,debit_card,2025-01-17T22:34:56Z,Brantford,clothing
+TXN-00158,CUST-7284,PROD-3456,123.45,USD,completed,credit_card,2025-01-17T23:01:23Z,Gilbert,electronics
+TXN-00159,CUST-9385,PROD-7890,456.78,EUR,failed,bank_transfer,2025-01-17T23:23:45Z,Ljubljana,books
+TXN-00160,CUST-6483,PROD-2345,789.01,USD,completed,paypal,2025-01-17T23:45:12Z,Boise,home_goods
+TXN-00161,CUST-8294,PROD-6789,345.67,GBP,completed,credit_card,2025-01-18T00:12:34Z,Chelmsford,sports
+TXN-00162,CUST-4738,PROD-1234,234.56,USD,pending,debit_card,2025-01-18T00:34:56Z,Spokane,clothing
+TXN-00163,CUST-7195,PROD-5678,678.90,CAD,completed,credit_card,2025-01-18T01:01:23Z,Thunder Bay,electronics
+TXN-00164,CUST-3649,PROD-9012,456.78,USD,completed,paypal,2025-01-18T01:23:45Z,Des Moines,books
+TXN-00165,CUST-9186,PROD-3456,567.89,EUR,completed,credit_card,2025-01-18T01:45:12Z,Zagreb,home_goods
+TXN-00166,CUST-6284,PROD-7890,123.45,USD,failed,bank_transfer,2025-01-18T02:12:34Z,Modesto,sports
+TXN-00167,CUST-8473,PROD-2345,234.56,GBP,completed,debit_card,2025-01-18T02:34:56Z,Peterborough,clothing
+TXN-00168,CUST-5827,PROD-6789,789.01,USD,completed,credit_card,2025-01-18T03:01:23Z,Tacoma,electronics
+TXN-00169,CUST-4629,PROD-1234,345.67,CAD,pending,paypal,2025-01-18T03:23:45Z,Moncton,books
+TXN-00170,CUST-7396,PROD-5678,456.78,USD,completed,credit_card,2025-01-18T03:45:12Z,Fontana,home_goods
+TXN-00171,CUST-9285,PROD-9012,678.90,EUR,completed,debit_card,2025-01-18T04:12:34Z,Bratislava,sports
+TXN-00172,CUST-3748,PROD-3456,234.56,USD,completed,credit_card,2025-01-18T04:34:56Z,Moreno Valley,clothing
+TXN-00173,CUST-6384,PROD-7890,567.89,GBP,failed,bank_transfer,2025-01-18T05:01:23Z,Exeter,electronics
+TXN-00174,CUST-8294,PROD-2345,123.45,USD,completed,paypal,2025-01-18T05:23:45Z,Huntington Beach,books
+TXN-00175,CUST-5738,PROD-6789,456.78,CAD,completed,credit_card,2025-01-18T05:45:12Z,Saint John,home_goods
+TXN-00176,CUST-4627,PROD-1234,789.01,USD,pending,debit_card,2025-01-18T06:12:34Z,Glendale,sports
+TXN-00177,CUST-7295,PROD-5678,345.67,EUR,completed,credit_card,2025-01-18T06:34:56Z,Sarajevo,clothing
+TXN-00178,CUST-9173,PROD-9012,234.56,USD,completed,paypal,2025-01-18T07:01:23Z,Grand Rapids,electronics
+TXN-00179,CUST-6483,PROD-3456,678.90,GBP,completed,credit_card,2025-01-18T07:23:45Z,Lincoln UK,books
+TXN-00180,CUST-8374,PROD-7890,456.78,USD,failed,bank_transfer,2025-01-18T07:45:12Z,Yonkers,home_goods
+TXN-00181,CUST-5628,PROD-2345,567.89,CAD,completed,debit_card,2025-01-18T08:12:34Z,Red Deer,sports
+TXN-00182,CUST-4736,PROD-6789,123.45,USD,completed,credit_card,2025-01-18T08:34:56Z,Amarillo,clothing
+TXN-00183,CUST-7184,PROD-1234,234.56,EUR,pending,paypal,2025-01-18T09:01:23Z,Skopje,electronics
+TXN-00184,CUST-9286,PROD-5678,789.01,USD,completed,credit_card,2025-01-18T09:23:45Z,Augusta,books
+TXN-00185,CUST-3649,PROD-9012,345.67,GBP,completed,debit_card,2025-01-18T09:45:12Z,Blackpool,home_goods
+TXN-00186,CUST-6294,PROD-3456,456.78,USD,completed,credit_card,2025-01-18T10:12:34Z,Little Rock,sports
+TXN-00187,CUST-8473,PROD-7890,678.90,CAD,failed,bank_transfer,2025-01-18T10:34:56Z,Greater Sudbury,clothing
+TXN-00188,CUST-5827,PROD-2345,234.56,USD,completed,paypal,2025-01-18T11:01:23Z,Akron,electronics
+TXN-00189,CUST-4638,PROD-6789,567.89,EUR,completed,credit_card,2025-01-18T11:23:45Z,Tirana,books
+TXN-00190,CUST-7295,PROD-1234,123.45,USD,pending,debit_card,2025-01-18T11:45:12Z,Mobile,home_goods
+TXN-00191,CUST-9174,PROD-5678,456.78,GBP,completed,credit_card,2025-01-18T12:12:34Z,Lancaster,sports
+TXN-00192,CUST-6483,PROD-9012,789.01,USD,completed,paypal,2025-01-18T12:34:56Z,Huntsville,clothing
+TXN-00193,CUST-8295,PROD-3456,345.67,CAD,completed,credit_card,2025-01-18T13:01:23Z,Kamloops,electronics
+TXN-00194,CUST-3748,PROD-7890,234.56,USD,failed,bank_transfer,2025-01-18T13:23:45Z,Grand Prairie,books
+TXN-00195,CUST-7396,PROD-2345,678.90,EUR,completed,debit_card,2025-01-18T13:45:12Z,Podgorica,home_goods
+TXN-00196,CUST-5729,PROD-6789,456.78,USD,completed,credit_card,2025-01-18T14:12:34Z,Columbus GA,sports
+TXN-00197,CUST-4627,PROD-1234,567.89,GBP,pending,paypal,2025-01-18T14:34:56Z,Bath,clothing
+TXN-00198,CUST-9186,PROD-5678,123.45,USD,completed,credit_card,2025-01-18T15:01:23Z,Tallahassee,electronics
+TXN-00199,CUST-6384,PROD-9012,234.56,CAD,completed,debit_card,2025-01-18T15:23:45Z,Nanaimo,books
+TXN-00200,CUST-8473,PROD-3456,789.01,USD,completed,credit_card,2025-01-18T15:45:12Z,Shreveport,home_goods
