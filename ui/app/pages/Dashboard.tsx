@@ -642,32 +642,21 @@ const Dashboard: React.FC = () => {
             Create New
           </AppHeader.NavigationItem>
         </AppHeader.Navigation>
+        <AppHeader.Menus>
+          <Button variant="default" onClick={() => setShowWhatsNewModal(true)}>
+            What's new
+          </Button>
+          <Button variant="default" onClick={() => window.open('https://github.com/dynatrace-oss/lookup-file-manager', '_blank')}>
+            Documentation
+          </Button>
+          <Button variant="default" onClick={() => window.open('https://github.com/dynatrace-oss/lookup-file-manager/issues', '_blank')}>
+            Share feedback
+          </Button>
+          <Button variant="default" onClick={() => setShowAboutModal(true)}>
+            About
+          </Button>
+        </AppHeader.Menus>
       </AppHeader>
-
-      {/* Action Bar below AppHeader */}
-      <Flex
-        justifyContent="flex-end"
-        alignItems="center"
-        gap={8}
-        padding={16}
-        style={{
-          backgroundColor: 'var(--dt-colors-background-base-default)',
-          borderBottom: '1px solid var(--dt-colors-border-base-subtle)'
-        }}
-      >
-        <Button variant="default" onClick={() => setShowWhatsNewModal(true)}>
-          What's new
-        </Button>
-        <Button variant="default" onClick={() => window.open('https://github.com/dynatrace-oss/lookup-file-manager', '_blank')}>
-          Documentation
-        </Button>
-        <Button variant="default" onClick={() => window.open('https://github.com/dynatrace-oss/lookup-file-manager/issues', '_blank')}>
-          Share feedback
-        </Button>
-        <Button variant="default" onClick={() => setShowAboutModal(true)}>
-          About
-        </Button>
-      </Flex>
 
       <Flex flexDirection="column" gap={24} padding={24}>
 
@@ -1292,7 +1281,7 @@ const Dashboard: React.FC = () => {
               <Flex flexDirection="column" gap={16}>
                 <Flex flexDirection="column" gap={8}>
                   <Text><strong>Version</strong></Text>
-                  <Text>1.5.10</Text>
+                  <Text>1.5.11</Text>
                 </Flex>
 
                 <Flex flexDirection="column" gap={8}>
