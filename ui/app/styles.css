@@ -116,6 +116,8 @@ div[role="table"],
 [class*="Table"] {
   background-color: #25273d !important;
   color: #f0f0f5 !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 thead,
@@ -138,7 +140,6 @@ div[role="cell"],
 div[role="gridcell"],
 [class*="cell"],
 [class*="Cell"] {
-  background-color: #25273d !important;
   color: #f0f0f5 !important;
   border-bottom: 1px solid #3d3f5c !important;
 }
@@ -182,7 +183,7 @@ nav * {
 
 button {
   color: #f0f0f5 !important;
-  background-color: #25273d !important;
+  /*background-color: #25273d !important;*/
 }
 
 button:hover {

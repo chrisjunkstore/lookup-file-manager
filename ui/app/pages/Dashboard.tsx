@@ -708,9 +708,11 @@ const Dashboard: React.FC = () => {
         <Container style={{
           backgroundColor: '#1e1e1e',
           padding: '24px',
-          borderRadius: '8px'
+          borderRadius: '8px',
+          width: '100%',
+          maxWidth: '100%'
         }}>
-          <Flex flexDirection="column" gap={16}>
+          <Flex flexDirection="column" gap={16} style={{ width: '100%' }}>
             <Flex justifyContent="space-between" alignItems="center">
               <Heading level={3}>Lookup Files</Heading>
               <Button onClick={refreshFileList} disabled={filesResult.isLoading}>
@@ -903,9 +905,11 @@ const Dashboard: React.FC = () => {
         <Container style={{
           backgroundColor: '#1e1e1e',
           padding: '24px',
-          borderRadius: '8px'
+          borderRadius: '8px',
+          width: '100%',
+          maxWidth: '100%'
         }}>
-          <Flex flexDirection="column" gap={16}>
+          <Flex flexDirection="column" gap={16} style={{ width: '100%' }}>
             <Flex justifyContent="space-between" alignItems="center">
               <Heading level={3}>{selectedFile.name}</Heading>
               <Flex gap={8}>
@@ -1287,7 +1291,7 @@ const Dashboard: React.FC = () => {
               <Flex flexDirection="column" gap={16}>
                 <Flex flexDirection="column" gap={8}>
                   <Text><strong>Version</strong></Text>
-                  <Text>1.5.12</Text>
+                  <Text>1.6.0</Text>
                 </Flex>
 
                 <Flex flexDirection="column" gap={8}>
