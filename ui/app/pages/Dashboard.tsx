@@ -2,6 +2,8 @@ import React, { useState, useMemo, useRef } from 'react';
 import { Container, Flex, Heading, Text, Button, ProgressCircle } from '@dynatrace/strato-components';
 import { DataTableV2, TextInput } from '@dynatrace/strato-components-preview';
 import { AppHeader } from '@dynatrace/strato-components-preview/layouts';
+import { Tooltip } from '@dynatrace/strato-components-preview/overlays';
+import { InformationIcon } from '@dynatrace/strato-icons';
 import { useDql } from '@dynatrace-sdk/react-hooks';
 
 /**
@@ -652,9 +654,13 @@ const Dashboard: React.FC = () => {
           <Button variant="default" onClick={() => window.open('https://github.com/dynatrace-oss/lookup-file-manager/issues', '_blank')}>
             Share feedback
           </Button>
-          <Button variant="default" onClick={() => setShowAboutModal(true)}>
-            About
-          </Button>
+          <Tooltip text="About">
+            <Button onClick={() => setShowAboutModal(true)}>
+              <Button.Prefix>
+                <InformationIcon />
+              </Button.Prefix>
+            </Button>
+          </Tooltip>
         </AppHeader.Menus>
       </AppHeader>
 
@@ -1281,7 +1287,7 @@ const Dashboard: React.FC = () => {
               <Flex flexDirection="column" gap={16}>
                 <Flex flexDirection="column" gap={8}>
                   <Text><strong>Version</strong></Text>
-                  <Text>1.5.11</Text>
+                  <Text>1.5.12</Text>
                 </Flex>
 
                 <Flex flexDirection="column" gap={8}>

@@ -3,7 +3,7 @@
   "app": {
   "id": "my.lookupfilemanager",
     "name": "Lookup File Manager",
-  "version": "1.5.11",
+  "version": "1.5.12",
     "description": "Interface for configuration lookup files in Grail",
     "scopes": [
       {
