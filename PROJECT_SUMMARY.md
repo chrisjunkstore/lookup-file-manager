@@ -2,10 +2,10 @@
 
 ## Overview
 
-A production-ready Dynatrace Gen3 application for managing lookup files in Grail. This app provides a comprehensive interface for browsing, uploading, editing, and managing tabular lookup files stored in the Dynatrace Resource Store.
+A production-ready Dynatrace Gen3 application for managing lookup files in Grail. This app provides a comprehensive interface for browsing, uploading, editing, downloading, and managing tabular lookup files stored in the Dynatrace Resource Store.
 
-**Current Version**: 1.5.3
-**Last Updated**: October 2025
+**Current Version**: 2.0.3
+**Last Updated**: January 2025
 **Status**: Production Ready
 **App ID**: `my.lookupfilemanager`
 
@@ -16,12 +16,16 @@ Lookup files in Dynatrace allow you to enrich observability data by joining exte
 ### Key Capabilities
 
 - Browse all lookup files with metadata (path, display name, size, records, modified date, type, description)
-- Upload new lookup files (CSV, JSONL, XML, JSON formats)
-- View and edit file contents with inline row editing
-- Add and delete rows in existing files
-- Delete lookup files
+- Upload new lookup files (CSV and JSONL formats, up to 100MB)
+- View file contents with virtual scrolling (up to 100,000 records)
+- **Smart Editing**:
+  - Small files (<10MB, <10K records): Full inline editing with add/delete row support
+  - Large files: Download → Edit → Upload workflow for optimal performance
+- **Download CSV**: Export any file as CSV for external editing
+- Delete lookup files with confirmation
 - Automatic parse pattern generation for CSV files
-- Proper handling of CSV headers with skippedRecords parameter
+- Proper CSV escaping for commas, quotes, and newlines
+- Responsive tables with minimum column width for high-field-count files
 
 ## Technology Stack
 
@@ -47,7 +51,7 @@ This application leverages:
 
 1. **Grail Integration**:
    - DQL queries to fetch lookup file metadata from `dt.system.files`
-   - Load commands to retrieve file contents
+   - Load commands to retrieve file contents with `maxResultRecords: 100000`
    - Real-time query execution with useDql hook
 
 2. **Resource Store API**:
@@ -57,10 +61,10 @@ This application leverages:
 
 3. **Strato Design System**:
    - AppHeader with navigation and HelpMenu
-   - DataTableV2 with pagination and sorting
+   - DataTableV2 with virtual scrolling, pagination, and sorting
    - Responsive Flex layouts
    - Modal dialogs for user feedback
-   - Dark theme optimized
+   - Dark theme optimized with custom CSS
 
 ## Project Structure
 
@@ -71,22 +75,27 @@ lookup-file-manager/
 │   ├── app.config.json           # App manifest with scopes and metadata
 │   ├── package.json              # Dependencies and scripts
 │   ├── tsconfig.json             # TypeScript configuration
-│   ├── .eslintrc.json            # Linting rules
-│   └── .gitignore                # Git ignore patterns
+│   └── generate-large-test-file.js  # Test file generator (95MB, 128 fields)
 │
 ├── Documentation
-│   ├── README.md                 # Main documentation
-│   └── PROJECT_SUMMARY.md        # This file
+│   ├── README.md                 # Main user-facing documentation
+│   ├── PROJECT_SUMMARY.md        # This file - developer guide
+│   ├── QUICKSTART.md             # Quick start guide
+│   ├── DEPLOYMENT.md             # Deployment instructions
+│   └── EXAMPLES.md               # Usage examples
 │
 ├── Frontend (ui/)
 │   ├── index.html                # HTML entry point
 │   └── app/
 │       ├── index.tsx             # React entry point
 │       ├── App.tsx               # Root component
+│       ├── styles.css            # Dark theme CSS overrides
 │       └── pages/
-│           └── Dashboard.tsx     # Main application component
+│           └── Dashboard.tsx     # Main application component (~1200 lines)
 │
 ├── Backend (src/)
+│   ├── functions/
+│   │   └── upload-lookup-file.ts # File upload handler (backend function)
 │   └── assets/
 │       └── app_icon.png          # App icon (256x256 PNG)
 │
@@ -94,8 +103,7 @@ lookup-file-manager/
     ├── README.md                 # Sample file documentation
     ├── error-codes.csv           # Sample CSV file
     ├── users.csv                 # Sample user data
-    ├── transactions-large.csv    # 200-row test file for pagination
-    └── sample_lookup_table.json  # Sample JSON file
+    └── transactions-large.csv    # 200-row test file for pagination
 ```
 
 ## Features & Implementation Status
@@ -108,25 +116,35 @@ lookup-file-manager/
 - [x] Pagination (10, 25, 50, 100 items per page)
 - [x] Sortable columns
 - [x] Resizable columns
+- [x] Search/filter files by name
 
 ### ✅ File Upload
 - [x] Drag-and-drop file upload
 - [x] Click-to-select file upload
-- [x] Support for CSV, JSONL, XML, JSON formats
+- [x] Support for CSV and JSONL formats
 - [x] Automatic parse pattern generation for CSV files
 - [x] Auto-fill file path and display name
 - [x] Auto-suggest lookup field (first column)
 - [x] CSV header skip with `skippedRecords` parameter
-- [x] File format validation
+- [x] File format validation (max 100MB, max 128 fields)
 - [x] Overwrite existing files support
 - [x] Upload progress and error handling
 - [x] Success/error feedback with modals
 
-### ✅ File Viewing & Editing
+### ✅ File Viewing
 - [x] Load and display file contents using DQL
+- [x] Support up to 100,000 records per file
+- [x] Virtual scrolling with DataTableV2
 - [x] Paginated data table (25, 50, 100, 200 rows per page)
-- [x] Enter edit mode for row manipulation
-- [x] Inline cell editing with text inputs
+- [x] Minimum column width (120px) for readability
+- [x] Responsive table width
+- [x] Horizontal scrolling for wide tables
+
+### ✅ File Editing
+- [x] **Smart edit mode detection**:
+  - Small files: Inline editing enabled
+  - Large files: Informational modal with download workflow
+- [x] Inline cell editing with text inputs (small files only)
 - [x] Add new rows
 - [x] Delete rows
 - [x] Save changes back to Resource Store
@@ -134,28 +152,35 @@ lookup-file-manager/
 - [x] Format detection (CSV vs JSONL)
 - [x] Preserve file metadata (display name, description, lookup field)
 - [x] Empty file validation
+- [x] CSV escaping for special characters
+
+### ✅ File Download
+- [x] Download any file as CSV
+- [x] Available in both view and edit modes
+- [x] Proper CSV formatting with escaping
+- [x] Uses edited data when in edit mode
+- [x] Browser-friendly download mechanism
 
 ### ✅ User Interface
 - [x] Professional AppHeader with navigation tabs
-- [x] HelpMenu with question mark icon
+- [x] HelpMenu with question mark icon, What's New, and About modals
 - [x] Responsive layout with Flex components
-- [x] Dark theme optimization
+- [x] Dark theme optimization with custom CSS
 - [x] Custom dark scrollbars
-- [x] Custom dark tooltips
-- [x] Modal dialogs instead of browser alerts
+- [x] Informative modal dialogs (not error modals for user guidance)
 - [x] Loading states with ProgressCircle
 - [x] Information banner with file limits
 - [x] Error displays for DQL/API failures
-- [x] Prominent action buttons (View/Edit, Delete)
-- [x] Description column in file list
+- [x] Prominent action buttons
+- [x] Clear user guidance for large files
 
 ### ⚠️ Known Limitations
-- [ ] Light theme support (hardcoded dark colors, not using design tokens)
+- [ ] Light theme support (hardcoded dark colors in styles.css)
 - [ ] Create New tab (placeholder only, not implemented)
 - [ ] No validation of parse pattern syntax
 - [ ] No support for complex lookup field types (INT, DOUBLE)
 - [ ] No support for editing display name/description after upload
-- [ ] HelpMenu has minimal entries (uses empty entries object)
+- [ ] No export to formats other than CSV (JSONL, JSON)
 
 ## Required Scopes
 
@@ -189,7 +214,87 @@ const result = useDql({ query });
 const refresh = () => setRefreshKey(prev => prev + 1);
 ```
 
-### 2. File Upload with FormData
+### 2. High Record Limit DQL Queries
+
+Load up to 100,000 records using maxResultRecords parameter:
+
+```typescript
+const fileContentResult = useDql({
+  query: fileContentQueryWithRefresh,
+  parameters: {
+    maxResultRecords: 100000
+  }
+});
+```
+
+### 3. Smart Edit Mode Detection
+
+Prevent browser performance issues for large files:
+
+```typescript
+const enterEditMode = () => {
+  const isLargeFile = selectedFile &&
+    (selectedFile.size > 10 * 1024 * 1024 || selectedFile.records > 10000);
+
+  if (isLargeFile) {
+    // Show informational modal with download workflow
+    setInfoMessage('...');
+    setShowInfoModal(true);
+    return;
+  }
+
+  // Enable inline editing for small files
+  setEditedData(JSON.parse(JSON.stringify(fileContent)));
+  setIsEditMode(true);
+};
+```
+
+### 4. CSV Download with Proper Escaping
+
+Export files with correct CSV formatting:
+
+```typescript
+const downloadAsCSV = () => {
+  const headers = Object.keys(data[0]).filter(k => k !== 'tableId');
+  const csvContent = [
+    headers.join(','),
+    ...data.map(row =>
+      headers.map(header => {
+        const value = row[header] || '';
+        if (typeof value === 'string' &&
+            (value.includes(',') || value.includes('"') || value.includes('\n'))) {
+          return `"${value.replace(/"/g, '""')}"`;
+        }
+        return value;
+      }).join(',')
+    )
+  ].join('\n');
+
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  // Trigger download...
+};
+```
+
+### 5. Minimum Column Width for High-Field Tables
+
+Ensure readability for files with 128 columns:
+
+```typescript
+const contentColumns = useMemo(() => {
+  return Object.keys(fileContent[0])
+    .filter(k => k !== 'tableId')
+    .map(key => ({
+      id: key,
+      header: key,
+      accessor: key,
+      minWidth: 120,  // Minimum width for readability
+      autoWidth: true,
+      resizable: true,
+    }));
+}, [fileContent]);
+```
+
+### 6. File Upload with FormData
 
 Multipart/form-data upload with content blob and request JSON:
 
@@ -206,7 +311,7 @@ await fetch('/platform/storage/resource-store/v1/files/tabular/lookup:upload', {
 });
 ```
 
-### 3. CSV Parse Pattern Generation
+### 7. CSV Parse Pattern Generation
 
 Automatic generation of Dynatrace Pattern Language (DPL) for CSV files:
 
@@ -216,66 +321,19 @@ const parsePattern = headers.map(h => `LD:${h}`).join(` ',' `);
 // Result: "LD:user_id ',' LD:username ',' LD:email ',' LD:department"
 ```
 
-### 4. CSV Header Skip
+### 8. Informational Modals Instead of Errors
 
-Proper use of `skippedRecords` API parameter (not in parse pattern):
-
-```typescript
-const requestObj = {
-  filePath: '/lookups/users',
-  parsePattern: "LD:user_id ',' LD:username ',' LD:email",
-  lookupField: 'user_id',
-  skippedRecords: 1,  // Skip header row
-  overwrite: true
-};
-```
-
-### 5. Custom Theming
-
-Global CSS for dark theme consistency:
+Provide helpful guidance instead of error messages:
 
 ```typescript
-<style>{`
-  /* Scrollbar styling */
-  ::-webkit-scrollbar {
-    width: 12px;
-    height: 12px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #2a2a2a;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: #555;
-  }
-
-  /* Tooltip styling */
-  [role="tooltip"],
-  [data-radix-popper-content-wrapper] {
-    background-color: #2a2a2a !important;
-    color: #ffffff !important;
-  }
-`}</style>
-```
-
-### 6. Modal Dialogs
-
-Custom modal overlays instead of browser alerts:
-
-```typescript
-{showSuccessModal && (
-  <div style={{
-    position: 'fixed',
-    top: 0, left: 0, right: 0, bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 9999,
-  }}>
+{showInfoModal && (
+  <div style={{ /* overlay styling */ }}>
     <Container style={{ backgroundColor: '#1e1e1e', padding: '24px' }}>
-      <Heading>Success</Heading>
-      <Text>File updated successfully!</Text>
-      <Button onClick={() => setShowSuccessModal(false)}>OK</Button>
+      <Heading level={3}>Download to Edit</Heading>
+      <Text style={{ whiteSpace: 'pre-line' }}>{infoMessage}</Text>
+      <Button variant="emphasized" onClick={() => setShowInfoModal(false)}>
+        Got it
+      </Button>
     </Container>
   </div>
 )}
@@ -311,7 +369,7 @@ The dev server provides:
 - Source maps
 - Auto-reload on file changes
 
-Access at: `https://localhost:3000` or `http://127.0.0.1:3000`
+Access at: `http://localhost:3000` or `http://127.0.0.1:3000`
 
 ### Version Management
 
@@ -320,230 +378,102 @@ Update version in `app.config.json` before each deployment:
 ```json
 {
   "app": {
-    "version": "1.5.3"
+    "version": "2.0.3"
   }
 }
 ```
 
-Version history:
-- **1.0.0**: Initial template
-- **1.1.0**: File upload working
-- **1.2.1**: Refresh button fixed
-- **1.2.2**: Delete function fixed
-- **1.3.0**: Row editor implemented
-- **1.3.4**: UI improvements (Actions column, prominent buttons)
-- **1.3.6**: CSV header skip fixed
-- **1.3.7**: Auto-refresh after save
-- **1.3.8**: Modal dialogs (attempted)
-- **1.3.9**: Dark dialog backgrounds
-- **1.4.0**: White upload box fix, description column added
-- **1.4.1**: Dark scrollbars
-- **1.5.0**: AppHeader with navigation and HelpMenu
-- **1.5.1**: Tooltip fix (first attempt)
-- **1.5.2**: Tooltip fix (improved)
-- **1.5.3**: Tooltip fix (comprehensive)
+## Version History
 
-## API Reference
+### v2.0.3 (Current) - January 2025
+- Improved informational modal for large file editing
+- Changed from error modal to "Download to Edit" guidance
+- Better user messaging with step-by-step instructions
+- Removed debug console.log statements for performance
 
-### Dynatrace Resource Store API
+### v2.0.2
+- Reduced minimum column width to 120px (from 150px)
+- Performance improvements by removing console logging
 
-**Upload/Update File:**
-```
-POST /platform/storage/resource-store/v1/files/tabular/lookup:upload
+### v2.0.1
+- Added minimum column width (150px) for high-column-count files
+- Better support for files with up to 128 fields
 
-Body: multipart/form-data
-- content: Blob (file content)
-- request: JSON {
-    filePath: string,           // Must start with /lookups/
-    parsePattern: string,       // DPL pattern
-    lookupField: string,        // Primary key field name
-    displayName?: string,       // Human-readable name
-    description?: string,       // File description
-    skippedRecords?: number,    // Number of header rows to skip
-    overwrite?: boolean         // Allow overwriting existing file
-  }
-```
+### v2.0.0 - **Major Release**
+- Removed experimental single-row editing feature
+- Simplified architecture with two edit modes:
+  - Small files: Full inline editing
+  - Large files: Download workflow
+- Added Download CSV functionality for all files
+- Improved error messaging and user guidance
+- Performance optimizations for large file handling
 
-**Delete File:**
-```
-POST /platform/storage/resource-store/v1/files:delete
+### v1.8.0
+- Increased DQL query limit to 100,000 records (from 1,000)
+- Added responsive table width support
+- Tables now adapt to browser width
 
-Body: application/json
-{
-  "filePath": "/lookups/filename"
-}
-```
+### v1.6.0
+- Improved table responsiveness
+- Fixed table layout issues
 
-### DQL Queries Used
+### v1.5.x
+- AppHeader with navigation and HelpMenu
+- Tooltip fixes for dark theme
+- Dark scrollbar styling
+- Description column in file list
+- UI refinements and bug fixes
 
-**List Files:**
-```sql
-fetch dt.system.files
-| filter startsWith(name, "/lookups/")
-```
+### v1.3.x - v1.4.x
+- Row editor implementation
+- CSV header skip fixes
+- Auto-refresh after save
+- Modal dialogs
+- Upload box styling improvements
 
-Returns fields:
-- `name`: File path
-- `display_name`: Display name
-- `description`: Description
-- `records`: Number of records
-- `size`: File size in bytes
-- `modified.timestamp`: Last modified timestamp
-- `lookup_field`: Primary key field
-- `type`: File type (e.g., "tabular/lookup")
-- `user.email`: Upload user
+### v1.0.0 - v1.2.x
+- Initial template
+- File upload working
+- Refresh and delete functions
+- Basic functionality
 
-**Load File Contents:**
-```sql
-load "/lookups/filename"
-```
+## Performance Considerations
 
-Returns all records as JSON objects with fields matching the parse pattern.
+### Large File Handling
 
-## Troubleshooting
+The app has been optimized for files up to the 100MB Dynatrace limit:
 
-### Common Issues
+**Viewing Performance:**
+- Virtual scrolling via DataTableV2 handles 100K+ records smoothly
+- Minimum column width prevents layout thrashing
+- Pagination reduces initial render time
 
-**Issue**: Refresh button doesn't work
-- **Cause**: `useDql` doesn't guarantee a `refetch` function
-- **Solution**: Use refresh key pattern in query comment
+**Editing Strategy:**
+- **Small files (<10MB, <10K records)**: In-browser editing
+  - All data loaded into React state
+  - Direct cell manipulation
+  - Suitable for quick edits
+- **Large files (≥10MB or ≥10K records)**: Download workflow
+  - Prevents browser memory issues
+  - Better performance for bulk edits
+  - Uses external tools (Excel, VS Code)
 
-**Issue**: Delete returns 404 error
-- **Cause**: Calling non-existent backend function
-- **Solution**: Use direct API call to Resource Store
+**Memory Management:**
+- No debug console logging in production
+- Efficient state updates with useMemo
+- Cleanup of event listeners
+- Proper blob handling in downloads
 
-**Issue**: "Unsupported file format for editing"
-- **Cause**: File format detection failed
-- **Solution**: Default to CSV for tabular/lookup files without extension
-
-**Issue**: File already exists (409 error)
-- **Cause**: Attempting to overwrite without permission
-- **Solution**: Add `overwrite: true` to request
-
-**Issue**: CSV header appears as data row
-- **Cause**: `skippedRecords` in parse pattern instead of request body
-- **Solution**: Move to separate API parameter
-
-**Issue**: No visual feedback after saving
-- **Cause**: DQL query not re-executing
-- **Solution**: Increment file content refresh key
-
-**Issue**: White backgrounds in dark theme
-- **Cause**: Not using design tokens
-- **Solution**: Add custom CSS overrides (temporary fix)
-
-### Debug Tips
-
-1. **Check browser console** for API errors
-2. **Inspect DQL query** in Network tab
-3. **Verify file path** starts with `/lookups/`
-4. **Check lookup field** uses underscores (not hyphens)
-5. **Test parse pattern** with simple data first
-6. **Validate CSV format** (proper delimiters, no empty lines)
-
-## Future Enhancements
-
-### High Priority
-1. **Light/Dark Theme Support**
-   - Replace hardcoded colors with design tokens
-   - Use `useCurrentTheme()` hook
-   - Update CSS variables
-   - Estimated effort: 4-6 hours
-
-2. **Implement "Create New" Tab**
-   - Manual field definition
-   - Row-by-row data entry
-   - Save as new lookup file
-   - Estimated effort: 8-10 hours
-
-3. **Enhanced HelpMenu**
-   - Add "What's new" entry
-   - Add "Documentation" link
-   - Add "About this app" with version info
-   - Estimated effort: 1-2 hours
-
-### Medium Priority
-4. **Edit File Metadata**
-   - Update display name after creation
-   - Update description after creation
-   - Update lookup field
-   - Estimated effort: 3-4 hours
-
-5. **Advanced Parse Patterns**
-   - Support INT and DOUBLE types
-   - Parse pattern validation
-   - Pattern preview/testing
-   - Estimated effort: 6-8 hours
-
-6. **XML Support**
-   - XML parse pattern generation
-   - XML editing capabilities
-   - Estimated effort: 4-6 hours
-
-### Low Priority
-7. **Export Functionality**
-   - Download files as CSV/JSON
-   - Export with current edits
-   - Estimated effort: 2-3 hours
-
-8. **Search/Filter**
-   - Search files by name/description
-   - Filter by type or size
-   - Estimated effort: 3-4 hours
-
-9. **Bulk Operations**
-   - Delete multiple files
-   - Bulk upload
-   - Estimated effort: 4-5 hours
-
-10. **App Icon Customization**
-    - Create custom 256x256 PNG icon
-    - Use table/database symbol
-    - Follow Dynatrace icon guidelines
-    - Estimated effort: 1-2 hours
-
-## Best Practices Implemented
-
-### Code Quality
-- ✅ TypeScript strict mode enabled
-- ✅ All props typed with interfaces
-- ✅ No `any` types used
-- ✅ Consistent naming conventions
-- ✅ Error handling in all async operations
-- ✅ Loading states for all data fetching
-
-### User Experience
-- ✅ Loading indicators during operations
-- ✅ Success/error feedback with modals
-- ✅ Confirmation dialogs for destructive actions
-- ✅ Responsive design
-- ✅ Accessible button labels
-- ✅ Clear error messages
-
-### Performance
-- ✅ useMemo for expensive computations
-- ✅ useCallback for event handlers (where needed)
-- ✅ Pagination to limit rendered rows
-- ✅ Efficient state updates
-- ✅ Minimal re-renders
-
-### Security
-- ✅ Scope-based access control
-- ✅ No sensitive data in client code
-- ✅ Input validation for file paths
-- ✅ Lookup field validation
-- ✅ File type validation
-
-## Testing Recommendations
+## Testing
 
 ### Manual Testing Checklist
 
 **File Upload:**
 - [ ] Upload CSV file with header
 - [ ] Upload JSONL file
-- [ ] Upload JSON array file
+- [ ] Test 100MB file (maximum size)
+- [ ] Test 128-field file (maximum fields)
 - [ ] Test auto-generated parse pattern
-- [ ] Test custom parse pattern
 - [ ] Verify skippedRecords works
 - [ ] Test file overwrite
 - [ ] Test invalid file formats
@@ -554,16 +484,31 @@ Returns all records as JSON objects with fields matching the parse pattern.
 - [ ] Test pagination
 - [ ] Resize columns
 - [ ] Refresh file list
+- [ ] Search files by name
+
+**File Viewing:**
+- [ ] View small file (<10MB)
+- [ ] View large file (≥10MB)
+- [ ] Test pagination
+- [ ] Test column resizing
+- [ ] Verify minimum column width
+- [ ] Test horizontal scrolling
 
 **File Editing:**
-- [ ] View file contents
-- [ ] Enter edit mode
+- [ ] Edit small file inline
+- [ ] Verify large file shows info modal
 - [ ] Edit cell values
 - [ ] Add new row
 - [ ] Delete row
 - [ ] Save changes
 - [ ] Verify auto-refresh
 - [ ] Cancel editing
+
+**File Download:**
+- [ ] Download small CSV
+- [ ] Download large CSV
+- [ ] Download with edited data
+- [ ] Verify CSV escaping (commas, quotes, newlines)
 
 **File Deletion:**
 - [ ] Delete confirmation appears
@@ -572,105 +517,145 @@ Returns all records as JSON objects with fields matching the parse pattern.
 - [ ] Verify file removed from list
 
 **Error Scenarios:**
-- [ ] Upload invalid file format
+- [ ] Upload file too large (>100MB)
+- [ ] Upload file with too many fields (>128)
 - [ ] Delete non-existent file
 - [ ] Save empty file
 - [ ] Invalid lookup field name
 - [ ] Network error handling
 
-### Automated Testing (Future)
+### Test File Generator
 
-Currently no automated tests. Recommended additions:
-- Unit tests for utility functions
-- Component tests with React Testing Library
-- Integration tests for API calls
-- E2E tests with Playwright
+Use the included script to generate large test files:
 
-## Contributing Guidelines
-
-### Code Style
-- Use functional components with hooks
-- Prefer `const` over `let`
-- Use TypeScript interfaces for all props
-- Add JSDoc comments for complex functions
-- Use meaningful variable names
-- Keep functions small and focused
-
-### Git Workflow
-1. Work in feature branches
-2. Write descriptive commit messages
-3. Update version in `app.config.json`
-4. Test locally before committing
-5. Deploy to test environment first
-
-### Commit Message Format
-```
-<type>: <description>
-
-<optional body>
+```bash
+node generate-large-test-file.js
 ```
 
-Types: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`
+This creates:
+- File size: ~95 MB
+- Fields: 128
+- Records: ~58,000
+- Format: CSV with header
 
-Examples:
-- `feat: add description column to file list`
-- `fix: tooltip backgrounds in dark theme`
-- `docs: update PROJECT_SUMMARY.md`
+## Troubleshooting
 
-## AI Assistant Context
+### Common Issues
 
-### For Continuing Development
+**Large file editing is slow:**
+- **Solution**: This is by design. Use the Download → Edit → Upload workflow
+- The app automatically blocks inline editing for files >10MB or >10K records
 
-When working with AI assistants on this project, provide this context:
+**File not appearing after upload:**
+- **Cause**: Files may take a few seconds to index in Grail
+- **Solution**: Wait 5-10 seconds and click the refresh button
 
-**"This is a Dynatrace Gen3 app for managing lookup files. It uses:**
-- React 18 with TypeScript
-- Dynatrace Strato components (AppHeader, DataTableV2, Modal)
-- useDql hook for DQL queries
-- Direct Resource Store API calls (no backend functions)
-- Dark theme with custom CSS overrides (not design tokens yet)
+**Column headers truncated:**
+- **Solution**: Columns have 120px minimum width
+- Resize columns by dragging the header borders
+- Use horizontal scrolling for very wide tables
 
-**Key files:**
-- `ui/app/pages/Dashboard.tsx` - main component (1100+ lines)
-- `app.config.json` - app configuration
+**Browser becomes unresponsive:**
+- **Cause**: Attempting to edit a large file in memory
+- **Solution**: Refresh page. Use Download → Edit → Upload for files >10MB
 
-**Important patterns:**
-- Refresh keys in DQL query comments force re-execution
-- skippedRecords is an API parameter, not part of parse pattern
-- File uploads use multipart/form-data with content blob + request JSON
-- Modal dialogs use custom overlays with dark backgrounds (#1e1e1e)
+**CSV download has wrong escaping:**
+- **Solution**: App automatically escapes commas, quotes, and newlines
+- If issues persist, check the source data for encoding problems
 
-**Current limitations:**
-- Hardcoded dark theme colors (needs migration to design tokens)
-- HelpMenu has empty entries
-- Create New tab not implemented"**
+### Debug Tips
 
-### Common Tasks
+1. **Check browser console** for API errors
+2. **Inspect DQL query** in Network tab (look for `maxResultRecords`)
+3. **Verify file path** starts with `/lookups/`
+4. **Check lookup field** uses underscores (not hyphens)
+5. **Test parse pattern** with simple data first
+6. **Validate CSV format** (proper delimiters, no empty lines)
+7. **Clear browser cache** if seeing stale data
 
-**Adding a new feature:**
-1. Update state variables
-2. Add UI components
-3. Implement event handlers
-4. Add error handling
-5. Update version number
-6. Test thoroughly
-7. Deploy
+## Future Enhancements
 
-**Fixing a bug:**
-1. Reproduce the issue
-2. Check browser console
-3. Review related code section
-4. Implement fix
-5. Test the fix
-6. Update version number
-7. Deploy
+### High Priority
+1. **Light Theme Support**
+   - Migrate from hardcoded colors to design tokens
+   - Use `useCurrentTheme()` hook
+   - Test in both light and dark modes
+   - Estimated effort: 4-6 hours
 
-**Improving UI:**
-1. Check Strato components documentation
-2. Use design tokens where possible
-3. Maintain consistent spacing (gap={8}, gap={16}, gap={24})
-4. Test in both light and dark (when implemented)
-5. Verify responsive behavior
+2. **Export to Multiple Formats**
+   - Export to JSONL
+   - Export to JSON array
+   - Preserve original format
+   - Estimated effort: 3-4 hours
+
+### Medium Priority
+3. **Enhanced HelpMenu**
+   - Expand documentation links
+   - Add video tutorials
+   - Add keyboard shortcuts guide
+   - Estimated effort: 2-3 hours
+
+4. **Edit File Metadata**
+   - Update display name after creation
+   - Update description after creation
+   - Change lookup field
+   - Estimated effort: 4-5 hours
+
+5. **Search and Filter**
+   - Advanced search with regex
+   - Filter by file size, type, date
+   - Save search filters
+   - Estimated effort: 4-6 hours
+
+### Low Priority
+6. **Bulk Operations**
+   - Multi-select delete
+   - Batch upload
+   - Copy files
+   - Estimated effort: 6-8 hours
+
+7. **Implement "Create New" Tab**
+   - Manual field definition
+   - Row-by-row data entry
+   - Save as new lookup file
+   - Estimated effort: 8-10 hours
+
+
+
+## Best Practices Implemented
+
+### Code Quality
+- ✅ TypeScript strict mode enabled
+- ✅ All props typed with interfaces
+- ✅ Minimal use of `any` types
+- ✅ Consistent naming conventions
+- ✅ Error handling in all async operations
+- ✅ Loading states for all data fetching
+- ✅ No debug logging in production
+
+### User Experience
+- ✅ Loading indicators during operations
+- ✅ Success/error feedback with modals
+- ✅ Informational guidance (not error messages) for expected scenarios
+- ✅ Confirmation dialogs for destructive actions
+- ✅ Responsive design
+- ✅ Accessible button labels
+- ✅ Clear, actionable error messages
+
+### Performance
+- ✅ useMemo for expensive computations
+- ✅ Virtual scrolling for large datasets
+- ✅ Pagination to limit rendered rows
+- ✅ Efficient state updates
+- ✅ Minimal re-renders
+- ✅ Smart edit mode detection
+
+### Security
+- ✅ Scope-based access control
+- ✅ No sensitive data in client code
+- ✅ Input validation for file paths
+- ✅ Lookup field validation
+- ✅ File type and size validation
 
 ## Support Resources
 
@@ -681,24 +666,18 @@ When working with AI assistants on this project, provide this context:
 - **Strato Design System**: https://developer.dynatrace.com/design/
 - **Resource Store API**: https://developer.dynatrace.com/reference/api/storage/
 
-### Community
-- **Community Forum**: https://community.dynatrace.com/
-- **GitHub Issues**: https://github.com/dynatrace-oss/lookup-file-manager/issues (if applicable)
-
-### Internal
-- **App URL**: https://jhl74831.apps.dynatrace.com/ui/apps/my.lookupfilemanager
-- **Environment ID**: jhl74831
-- **Organization**: Dynatrace One - ESA OSS
 
 ## Conclusion
 
 The Lookup File Manager is a production-ready Dynatrace Gen3 application that successfully:
 
-✅ **Provides essential functionality** for managing lookup files
+✅ **Provides comprehensive functionality** for managing lookup files
+✅ **Handles large files intelligently** with smart edit mode detection
 ✅ **Uses modern Dynatrace technologies** (Grail, Resource Store API, Strato components)
 ✅ **Implements best practices** (TypeScript, error handling, user feedback)
 ✅ **Follows Dynatrace design patterns** (AppHeader, dark theme, modals)
 ✅ **Is fully documented** for future development and maintenance
+✅ **Supports files up to platform limits** (100MB, 128 fields, 100K records)
 
 **Ready for production use and future enhancement!**
 
@@ -706,4 +685,4 @@ The Lookup File Manager is a production-ready Dynatrace Gen3 application that su
 
 **Built with Dynatrace Gen3 Platform | React 18 | TypeScript 5 | Strato Design System**
 
-*Last updated: October 30, 2025 | Version 1.5.3*
+*Last updated: November 2025 | Version 2.0.3*
