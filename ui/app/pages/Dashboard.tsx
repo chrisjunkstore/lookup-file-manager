@@ -40,11 +40,12 @@ const Dashboard: React.FC = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [showErrorModal, setShowErrorModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
+  const [showInfoModal, setShowInfoModal] = useState(false);
+  const [infoMessage, setInfoMessage] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [fileToDelete, setFileToDelete] = useState<LookupFile | null>(null);
   const [showWhatsNewModal, setShowWhatsNewModal] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
-  const [showPerformanceWarning, setShowPerformanceWarning] = useState(false);
 
   // Upload form state
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -95,10 +96,7 @@ const Dashboard: React.FC = () => {
 
   // Extract file content from query result
   const fileContent = useMemo(() => {
-    console.log('File content result:', fileContentResult);
-    console.log('File content query:', fileContentQuery);
     if (fileContentResult.data?.records) {
-      console.log('File content records:', fileContentResult.data.records);
       return fileContentResult.data.records;
     }
     return [];
@@ -117,22 +115,24 @@ const Dashboard: React.FC = () => {
   };
 
   const enterEditMode = () => {
-    // Check if file is large and show warning
+    // Check if file is large - disable editing for large files
     const isLargeFile = selectedFile && (selectedFile.size > 10 * 1024 * 1024 || selectedFile.records > 10000);
 
     if (isLargeFile) {
-      setShowPerformanceWarning(true);
+      // For large files, show informational message instead of enabling edit mode
+      setInfoMessage(
+        `This file is ${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB with ${selectedFile.records.toLocaleString()} records, which is too large to edit directly in the browser.\n\n` +
+        `To modify this file:\n\n` +
+        `1. Click "Download CSV" above to save a copy\n` +
+        `2. Edit the file offline using Excel, VS Code, or your preferred editor\n` +
+        `3. Use "Upload File" to replace the file with your updated version\n\n` +
+        `This workflow ensures better performance and prevents browser memory issues.`
+      );
+      setShowInfoModal(true);
       return;
     }
 
-    // Copy current file content to editable state
-    setEditedData(JSON.parse(JSON.stringify(fileContent)));
-    setIsEditMode(true);
-  };
-
-  const proceedWithEdit = () => {
-    setShowPerformanceWarning(false);
-    // Copy current file content to editable state
+    // For small files, use bulk edit mode
     setEditedData(JSON.parse(JSON.stringify(fileContent)));
     setIsEditMode(true);
   };
@@ -166,6 +166,43 @@ const Dashboard: React.FC = () => {
     setEditedData(newData);
   };
 
+  const downloadAsCSV = () => {
+    if (!selectedFile || !fileContent) return;
+
+    // Get data to download (use edited data if in edit mode, otherwise use fileContent)
+    const dataToDownload = editedData.length > 0 ? editedData : fileContent;
+
+    // Get headers from first record
+    const headers = Object.keys(dataToDownload[0]).filter(k => k !== 'tableId');
+
+    // Build CSV content
+    const csvContent = [
+      headers.join(','), // Header row
+      ...dataToDownload.map((row: any) =>
+        headers.map(header => {
+          const value = row[header] || '';
+          // Escape values that contain commas, quotes, or newlines
+          if (typeof value === 'string' && (value.includes(',') || value.includes('"') || value.includes('\n'))) {
+            return `"${value.replace(/"/g, '""')}"`;
+          }
+          return value;
+        }).join(',')
+      )
+    ].join('\n');
+
+    // Create blob and download
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', `${selectedFile.display_name || selectedFile.name.split('/').pop()}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const saveChanges = async () => {
     if (!selectedFile) return;
 
@@ -174,9 +211,6 @@ const Dashboard: React.FC = () => {
       // Determine file format from type field or extension
       const fileType = selectedFile.type || '';
       const fileExtension = selectedFile.name.substring(selectedFile.name.lastIndexOf('.')).toLowerCase();
-      console.log('File type:', fileType);
-      console.log('File extension:', fileExtension);
-      console.log('File name:', selectedFile.name);
 
       let fileContent = '';
       let isCSV = false;
@@ -191,8 +225,6 @@ const Dashboard: React.FC = () => {
         // Default to CSV for tabular/lookup files without clear extension
         isCSV = true;
       }
-
-      console.log('Detected format - isCSV:', isCSV, 'isJSONL:', isJSONL);
 
       if (isCSV) {
         // Convert to CSV
@@ -589,10 +621,11 @@ const Dashboard: React.FC = () => {
   const contentColumns = useMemo(() => {
     if (!fileContent || fileContent.length === 0) return [];
     const firstRecord = fileContent[0];
-    return Object.keys(firstRecord).map(key => ({
+    return Object.keys(firstRecord).filter(k => k !== 'tableId').map(key => ({
       id: key,
       header: key,
       accessor: key,
+      minWidth: 120,
       autoWidth: true,
       resizable: true,
     }));
@@ -948,19 +981,22 @@ const Dashboard: React.FC = () => {
                     <Button variant="emphasized" onClick={saveChanges} disabled={isSaving}>
                       {isSaving ? 'Saving...' : 'Save Changes'}
                     </Button>
-                    <Button onClick={cancelEdit} disabled={isSaving}>Cancel</Button>
+                    <Button onClick={downloadAsCSV}>Download CSV</Button>
+                    <Button onClick={cancelEdit} disabled={isSaving}>
+                      Cancel
+                    </Button>
                   </>
                 ) : (
                   <>
                     <Button variant="emphasized" onClick={enterEditMode} disabled={fileContent.length === 0}>
                       Edit Rows
                     </Button>
+                    <Button onClick={downloadAsCSV}>Download CSV</Button>
                     <Button onClick={() => setActiveTab('browse')}>Back to Browse</Button>
                     <Button onClick={() => deleteFile(selectedFile)}>Delete File</Button>
                   </>
                 )}
-              </Flex>
-            </Flex>
+              </Flex>            </Flex>
 
             {selectedFile.display_name && (
               <Text><strong>Display Name:</strong> {selectedFile.display_name}</Text>
@@ -998,7 +1034,7 @@ const Dashboard: React.FC = () => {
             ) : (isEditMode ? editedData.length : fileContent.length) > 0 ? (
               <div>
                 {isEditMode ? (
-                  // Editable table
+                  // Bulk edit mode for small files
                   <div style={{ overflowX: 'auto' }}>
                     <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                       <thead>
@@ -1040,7 +1076,7 @@ const Dashboard: React.FC = () => {
                     </table>
                   </div>
                 ) : (
-                  // Read-only table
+                  // Read-only table view
                   <DataTableV2 data={contentTableData} columns={contentColumns} resizable>
                     <DataTableV2.Pagination defaultPageSize={50} pageSizeOptions={[25, 50, 100, 200]} />
                   </DataTableV2>
@@ -1119,8 +1155,8 @@ const Dashboard: React.FC = () => {
         </div>
       )}
 
-      {/* Performance Warning Dialog */}
-      {showPerformanceWarning && (
+      {/* Info Dialog */}
+      {showInfoModal && (
         <div style={{
           position: 'fixed',
           top: 0,
@@ -1142,31 +1178,10 @@ const Dashboard: React.FC = () => {
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
           }}>
             <Flex flexDirection="column" gap={16}>
-              <Heading level={3}>Performance Warning</Heading>
-              <Text>
-                This file is large ({selectedFile ? `${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB, ${selectedFile.records.toLocaleString()} records` : ''})
-                and may cause significant performance issues when editing in the browser.
-              </Text>
-              <Text style={{ fontSize: '14px' }}>
-                <strong>Expected issues:</strong>
-              </Text>
-              <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '14px' }}>
-                <li>Slow page responsiveness</li>
-                <li>High memory usage</li>
-                <li>Browser freezing or "page unresponsive" warnings</li>
-                <li>Difficulty saving changes</li>
-              </ul>
-              <Text style={{ fontSize: '14px', marginTop: '8px' }}>
-                <strong>Recommendations:</strong>
-              </Text>
-              <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '14px' }}>
-                <li>For large files, consider editing offline and re-uploading</li>
-                <li>Split large files into smaller ones if possible</li>
-                <li>Use filtering in DQL queries to work with subsets of data</li>
-              </ul>
-              <Flex justifyContent="flex-end" gap={8} style={{ marginTop: '8px' }}>
-                <Button variant="emphasized" onClick={proceedWithEdit}>Proceed Anyway</Button>
-                <Button onClick={() => setShowPerformanceWarning(false)}>Cancel</Button>
+              <Heading level={3}>Download to Edit</Heading>
+              <Text style={{ whiteSpace: 'pre-line' }}>{infoMessage}</Text>
+              <Flex justifyContent="flex-end">
+                <Button variant="emphasized" onClick={() => setShowInfoModal(false)}>Got it</Button>
               </Flex>
             </Flex>
           </Container>
