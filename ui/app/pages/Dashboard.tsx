@@ -44,6 +44,7 @@ const Dashboard: React.FC = () => {
   const [fileToDelete, setFileToDelete] = useState<LookupFile | null>(null);
   const [showWhatsNewModal, setShowWhatsNewModal] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
+  const [showPerformanceWarning, setShowPerformanceWarning] = useState(false);
 
   // Upload form state
   const [uploadFile, setUploadFile] = useState<File | null>(null);
@@ -81,6 +82,7 @@ const Dashboard: React.FC = () => {
 
   const fileContentResult = useDql({
     query: fileContentQueryWithRefresh,
+    maxResultRecords: 100000, // Increase limit to support large files (up to ~100k records)
   });
 
   // Extract files from query result
@@ -115,6 +117,21 @@ const Dashboard: React.FC = () => {
   };
 
   const enterEditMode = () => {
+    // Check if file is large and show warning
+    const isLargeFile = selectedFile && (selectedFile.size > 10 * 1024 * 1024 || selectedFile.records > 10000);
+
+    if (isLargeFile) {
+      setShowPerformanceWarning(true);
+      return;
+    }
+
+    // Copy current file content to editable state
+    setEditedData(JSON.parse(JSON.stringify(fileContent)));
+    setIsEditMode(true);
+  };
+
+  const proceedWithEdit = () => {
+    setShowPerformanceWarning(false);
     // Copy current file content to editable state
     setEditedData(JSON.parse(JSON.stringify(fileContent)));
     setIsEditMode(true);
@@ -523,7 +540,20 @@ const Dashboard: React.FC = () => {
     {
       id: 'size',
       header: 'Size',
-      accessor: (row: LookupFile) => formatFileSize(row.size),
+      accessor: 'size',
+      cell: ({ rowData }: any) => {
+        const isLargeFile = rowData.size > 10 * 1024 * 1024 || rowData.records > 10000;
+        return (
+          <Flex gap={4} alignItems="center">
+            <Text>{formatFileSize(rowData.size)}</Text>
+            {isLargeFile && (
+              <Tooltip text="Large file - editing may cause performance issues">
+                <span style={{ color: '#f5a623', fontSize: '16px', cursor: 'help' }}>⚠</span>
+              </Tooltip>
+            )}
+          </Flex>
+        );
+      },
       autoWidth: true,
     },
     {
@@ -1083,6 +1113,60 @@ const Dashboard: React.FC = () => {
               <Text style={{ color: 'var(--dt-colors-text-critical-default)' }}>{errorMessage}</Text>
               <Flex justifyContent="flex-end">
                 <Button onClick={() => setShowErrorModal(false)}>OK</Button>
+              </Flex>
+            </Flex>
+          </Container>
+        </div>
+      )}
+
+      {/* Performance Warning Dialog */}
+      {showPerformanceWarning && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 9999,
+        }}>
+          <Container style={{
+            backgroundColor: '#1e1e1e',
+            padding: '24px',
+            borderRadius: '8px',
+            maxWidth: '600px',
+            width: '90%',
+            boxShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
+          }}>
+            <Flex flexDirection="column" gap={16}>
+              <Heading level={3}>Performance Warning</Heading>
+              <Text>
+                This file is large ({selectedFile ? `${(selectedFile.size / (1024 * 1024)).toFixed(2)} MB, ${selectedFile.records.toLocaleString()} records` : ''})
+                and may cause significant performance issues when editing in the browser.
+              </Text>
+              <Text style={{ fontSize: '14px' }}>
+                <strong>Expected issues:</strong>
+              </Text>
+              <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '14px' }}>
+                <li>Slow page responsiveness</li>
+                <li>High memory usage</li>
+                <li>Browser freezing or "page unresponsive" warnings</li>
+                <li>Difficulty saving changes</li>
+              </ul>
+              <Text style={{ fontSize: '14px', marginTop: '8px' }}>
+                <strong>Recommendations:</strong>
+              </Text>
+              <ul style={{ margin: '0', paddingLeft: '20px', fontSize: '14px' }}>
+                <li>For large files, consider editing offline and re-uploading</li>
+                <li>Split large files into smaller ones if possible</li>
+                <li>Use filtering in DQL queries to work with subsets of data</li>
+              </ul>
+              <Flex justifyContent="flex-end" gap={8} style={{ marginTop: '8px' }}>
+                <Button variant="emphasized" onClick={proceedWithEdit}>Proceed Anyway</Button>
+                <Button onClick={() => setShowPerformanceWarning(false)}>Cancel</Button>
               </Flex>
             </Flex>
           </Container>
